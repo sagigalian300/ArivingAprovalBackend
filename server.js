@@ -6,6 +6,7 @@ const corsOptions = {
     origin: [
       "https://sage-sherbet-ccb1c2.netlify.app",
       "http://localhost:3000",
+      "https://eventapprovals.netlify.app",
     ],
     allowedHeaders: ["Content-Type"],
     exposedHeaders: ["Access-Control-Allow-Origin"],
