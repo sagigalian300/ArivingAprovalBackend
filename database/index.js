@@ -39,6 +39,7 @@ const addAccount = async (name, password) => {
     otherDetails: "",
     latitude: "",
     longitude: "",
+    decoIndex: 0,
   });
   const __ = collectionGuests.insertOne({
     userId: _id,
@@ -68,7 +69,8 @@ const createInvitation = async (
   type,
   userId,
   latitude,
-  longitude
+  longitude,
+  decoIndex
 ) => {
   // const inviteId = new ObjectId();
   console.log("user id :" + userId);
@@ -84,6 +86,7 @@ const createInvitation = async (
         type,
         latitude,
         longitude,
+        decoIndex,
       },
     }
   );
