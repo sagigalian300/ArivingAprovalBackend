@@ -111,21 +111,27 @@ router.post("/sendRemindersToAllGuests", async (req, res) => {
     });
 
     for (const guest of guests) {
-      try {
-        await transporter.sendMail({
-          from: process.env.GMAIL_ADDRESS,
-          to: guest.guestEmail,
-          subject: subject,
-          html: `
-        <div dir="rtl" style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
-          שלום ${guest.guestName},<br><br>
-          ${text.replace(/\n/g, "<br>")}
-        </div>
-      `,
-        });
-        console.log("Email sent to:", guest.guestEmail);
-      } catch (err) {
-        console.error("Error sending email to:", guest.guestEmail, err);
+      if (guest.guestEmail != "None") {
+        try {
+          await transporter.sendMail({
+            from: process.env.GMAIL_ADDRESS,
+            to: guest.guestEmail,
+            subject: subject,
+            html: `
+          <div dir="rtl" style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">
+            שלום ${guest.guestName},<br><br>
+            ${text.replace(/\n/g, "<br>")}
+          </div>
+        `,
+          });
+          console.log("Email sent to:", guest.guestEmail);
+        } catch (err) {
+          console.error("Error sending email to:", guest.guestEmail, err);
+        }
+      } else {
+        console.log(
+          "Email sending skiped " + guest.guestName + " because email is None"
+        );
       }
     }
 
