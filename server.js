@@ -18,8 +18,8 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// const PORT = 8080 || process.env.PORT; // the port was 3001 before..
-const PORT = 3001 || process.env.PORT; // the port was 3001 before..
+const PORT = 8080 || process.env.PORT; // the port was 3001 before..
+// const PORT = 3001 || process.env.PORT; // the port was 3001 before..
 
 const { userRouter } = require("./routes/users");
 const { guestsRouter } = require("./routes/guests");
