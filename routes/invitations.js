@@ -4,9 +4,9 @@ const router = express.Router();
 const { createInvitation, GetInviteInfo } = require("../database/index");
 
 router.post("/createInvitation", (req, res) => {
-  const { name, date, location, otherDetails, type, userId, latitude, longitude, decoIndex } = req.query;
+  const { name, date, location, otherDetails, type, userId, latitude, longitude, placeForWaze, decoIndex } = req.query;
 
-  createInvitation(name, date, location, otherDetails, type, userId, latitude, longitude, decoIndex)
+  createInvitation(name, date, location, otherDetails, type, userId, latitude, longitude, placeForWaze, decoIndex)
     .then((inviteId) => {
       console.log("Invite has been created with the id of ", inviteId);
       res.send(inviteId);
