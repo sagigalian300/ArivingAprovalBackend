@@ -36,7 +36,7 @@ const addAccount = async (name, password) => {
     userId: _id,
     inviteId,
     name: "",
-    date: "",
+    date: null,
     location: "",
     otherDetails: "",
     latitude: null,
@@ -90,7 +90,7 @@ const createInvitation = async (
     {
       $set: {
         name,
-        date,
+        date: new Date(date),
         location,
         otherDetails,
         type,
