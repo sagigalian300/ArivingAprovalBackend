@@ -5,6 +5,7 @@ const {
   GetGuests,
   DeleteGuest,
   IsEmailAlreadyUsed,
+  DisableGmailSendingFunctionality,
 } = require("../database/index");
 const { GetInviteInfo } = require("../database/index");
 const nodemailer = require("nodemailer");
@@ -55,10 +56,10 @@ router.post("/isEmailAlreadyUsed", (req, res) => {
       throw Error;
     });
 });
-
 router.post("/sendRemindersToAllGuests", async (req, res) => {
   const { userId, inviteId } = req.query;
 
+  const _ = await DisableGmailSendingFunctionality(inviteId);
   const inviteInfo = await GetInviteInfo(inviteId);
 
   const type = inviteInfo.type;

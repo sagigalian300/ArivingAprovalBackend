@@ -43,6 +43,7 @@ const addAccount = async (name, password) => {
     longitude: null,
     placeForWaze: "",
     decoIndex: 0,
+    allowSendingGmails: true,
   });
   const __ = collectionGuests.insertOne({
     userId: _id,
@@ -171,6 +172,20 @@ const IsEmailAlreadyUsed = async (email, inviteId) => {
   }
 };
 
+const DisableGmailSendingFunctionality = async (inviteId) => {
+  try {
+    const result = await collectionInvitation.updateOne(
+      { inviteId: new ObjectId(inviteId) },
+      { $set: { allowSendingGmails: false } }
+    );
+
+    return result.modifiedCount > 0;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
 module.exports = {
   addAccount,
   createInvitation,
@@ -184,4 +199,5 @@ module.exports = {
   getAllExistingUsers,
   deleteUser,
   updateFirstLoginToFalse,
+  DisableGmailSendingFunctionality,
 };
